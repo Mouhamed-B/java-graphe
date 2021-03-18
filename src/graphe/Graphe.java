@@ -1,8 +1,8 @@
 package graphe;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;//
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,8 +11,7 @@ public class Graphe {
 	private Map<Character,Integer> nodeToInt;
 	private char[] intToNode = {'a','b','c','d','e','f','g','h'};
 	private int[][] matAd;
-	private Map<Integer,ArrayList<Integer>> listAd;
-
+	private Map<Integer,HashSet<Integer>> listAd;
 
 	Graphe(){  
 		nodeToInt = new HashMap<>();
@@ -149,7 +148,7 @@ public class Graphe {
 		return false;
 	}
 
-	public ArrayList<Integer> neighbourhood(int node){
+	public ArrayList<Integer> neighbour(int node){
 		int n = matAd.length;
 		//int[] neighbour = new int[nodeDegree(node)];
 		//System.out.println("Les voisins de "+node+" sont : ");
@@ -162,9 +161,9 @@ public class Graphe {
 		return neighbour;
 	}
 
-	public ArrayList<Character> neighbourhood(char node){
+	public ArrayList<Character> neighbour(char node){
 		ArrayList<Integer> neighbourhood =
-			neighbourhood(nodeToInt.get(node));
+			neighbour(nodeToInt.get(node));
 		int n = neighbourhood.size();
 		ArrayList<Character> neighbour = new ArrayList<>();
 		for (int val : neighbourhood) {
@@ -172,4 +171,31 @@ public class Graphe {
 		}
 		return neighbour;
 	}
+
+	public ArrayList precedentList(int start) {
+		ArrayList<Integer> fifo = new ArrayList<>();
+		ArrayList<Integer> precedent = new ArrayList<>();
+		ArrayList<Integer> distance = new ArrayList<>();
+		HashSet<Integer> marked = new HashSet<>();
+
+		int n = getOrder();
+		int l;
+		//init
+		for (int i = 0; i < n; i++) {
+			distance.set(i, Integer.MAX_VALUE);
+		}
+		distance.set(start,0);
+		fifo.add(start);
+		int exploreNode;
+		ArrayList<Integer> neighboorList;
+		while(fifo.size()!=0){
+			exploreNode = fifo.get(0);
+			neighboorList = neighbour(exploreNode);
+			int dist0;
+			
+		}
+	
+		return null;
+	}
+
 }
